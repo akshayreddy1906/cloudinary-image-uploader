@@ -3,6 +3,8 @@ import { Router } from "express";
 import upload from "../middleware/fileUpload.js";
 import { UNEXPECTED_FILE_TYPE } from "../constants/file.js";
 import {fileController} from "../controllers/fileController.js"
+import { imageResize } from "../middleware/imageResize.js";
+import { isFilePresent } from "../middleware/validators/isFilePresent.js";
 export const fileRouter = Router();
 fileRouter.post(
   "/upload",
@@ -18,5 +20,7 @@ fileRouter.post(
     });
     next();
   },
-  fileController
+  fileController,
+  imageResize,
+  isFilePresent
 );

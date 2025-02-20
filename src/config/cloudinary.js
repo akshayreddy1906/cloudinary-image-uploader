@@ -1,5 +1,6 @@
-import { v2 as cloudinary } from "cloudinary";
+import { v2 } from "cloudinary";
 import crypto from "crypto";
+const cloudinary = v2; 
 export const cloudinaryConfig = () => {
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

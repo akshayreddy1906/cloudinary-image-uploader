@@ -1,4 +1,4 @@
-const isFilePresent = (req, res, next) => {
+export const isFilePresent = (req, res, next) => {
   if (!req.files) {
     return res.status(400).json({
       error: "File not present in request",
@@ -11,4 +11,3 @@ const isFilePresent = (req, res, next) => {
   }
   next();
 };
-module.exports = { isFilePresent };

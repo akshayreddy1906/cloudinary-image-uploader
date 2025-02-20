@@ -9,7 +9,7 @@ export const fileController = async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     const file = req.files[0];
     const result = await cloudinaryUpload(file);
-    res.status(200).json({ message: "File uploaded successfully" });
+    res.status(200).json({ message: "File uploaded successfully",uploadResult: result });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

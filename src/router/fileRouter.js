@@ -5,9 +5,12 @@ import { UNEXPECTED_FILE_TYPE } from "../constants/file.js";
 import {fileController} from "../controllers/fileController.js"
 import { imageResize } from "../middleware/imageResize.js";
 import { isFilePresent } from "../middleware/validators/isFilePresent.js";
+import  authenticateJWT  from "../middleware/authentication.js";
+
 export const fileRouter = Router();
 fileRouter.post(
   "/upload",
+  authenticateJWT,
   function (req, res, next) {
     upload(req, res, function (err) {
       if (err instanceof multer.MulterError) {

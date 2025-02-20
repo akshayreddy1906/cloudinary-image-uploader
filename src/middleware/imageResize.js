@@ -1,8 +1,8 @@
-import sharp from "sharp";
-import fs from "fs";
-import path from "path";
+const sharp = require("sharp");
+const fs = require("fs");
+const path = require("path");
 
-export const imageResize = async (req, res, next) => {
+const imageResize = async (req, res, next) => {
   try {
     const originalFilePath = req.files[0].path;
     const parsedPath = path.parse(originalFilePath);
@@ -29,3 +29,4 @@ export const imageResize = async (req, res, next) => {
     return res.status(500).json({ error: { description: error.message } });
   }
 };
+module.exports = { imageResize };

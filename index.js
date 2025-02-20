@@ -1,9 +1,8 @@
-import express from "express";
-import { fileRouter } from "./src/router/fileRouter.js";
-import { fileURLToPath } from "url";
-import path from "path";
-import fs from "fs";
-import cors from "cors";
+const express = require("express");
+const { fileRouter } = require("./src/router/fileRouter.js");
+const path = require("path");
+const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 4040;
@@ -13,8 +12,6 @@ app.use("/", (req, res) => {
   res.send("Welcome to files/images uploader");
 });
 app.use("/files", fileRouter);
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);

@@ -1,5 +1,5 @@
-import { Model, Seqeuelize, DataTypes, Sequelize} from "sequelize";
-export default (Sequelize, DataTypes) => {
+const  { Model, Seqeuelize, DataTypes, Sequelize} = require("sequelize");
+module.exports =  (Sequelize, DataTypes) => {
   Image.init(
     {
       url: DataTypes.STRING,

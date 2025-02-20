@@ -1,7 +1,7 @@
-import { v2 } from "cloudinary";
-import crypto from "crypto";
-const cloudinary = v2; 
-export const cloudinaryConfig = () => {
+const { v2 } = require("cloudinary");
+const crypto = require("crypto");
+const cloudinary = v2;
+const cloudinaryConfig = () => {
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -9,25 +9,25 @@ export const cloudinaryConfig = () => {
   });
 };
 
-export const gernerateSignature = (paramsToSign) => {
+const gernerateSignature = (paramsToSign) => {
   const { api_secret } = cloudinary.config();
   const sortedParams = Object.keys(paramsToSign)
     .sort()
     .map((key) => `${key}=${paramsToSign[key]}`)
     .join("&");
-    const signature = crypto
+  const signature = crypto
     .createHash("sha256")
     .update(sortedParams + api_secret)
     .digest("hex");
   return signature;
 };
-export const uploadToCloudinary = async (filePath) => {
+const uploadToCloudinary = async (filePath) => {
   try {
     cloudinaryConfig();
     const timestamp = Math.round(new Date().getTime() / 1000);
     const paramsToSign = {
       timestamp,
-    };  
+    };
     const signature = gernerateSignature(paramsToSign);
     const result = await cloudinary.uploader.upload(filePath, {
       ...paramsToSign,
@@ -39,3 +39,4 @@ export const uploadToCloudinary = async (filePath) => {
     console.error(error);
   }
 };
+module.exports = { uploadToCloudinary ,cloudinaryConfig ,gernerateSignature};

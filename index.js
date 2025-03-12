@@ -5,8 +5,7 @@ const fs = require("fs");
 const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 4040;
-app.use(express.json());
+const port = 4040;
 app.use(cors());
 app.use("/", (req, res) => {
   res.send("Welcome to files/images uploader");

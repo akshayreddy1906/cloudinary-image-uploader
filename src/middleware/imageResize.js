@@ -16,10 +16,10 @@ const imageResize = async (req, res, next) => {
         quality: 100,
         mozjpeg: true,
         chromaSubsampling: "4:4:4",
-        trellisQuantisation: "true",
-        overshootDeringing: "true",
-        optimiseScans: "true",
-        progressive: "true",
+        trellisQuantisation: true,
+        overshootDeringing: true,
+        optimiseScans: true,
+        progressive: true,
       })
       .toFile(outputFilePath);
     req.files[0].path = outputFilePath;

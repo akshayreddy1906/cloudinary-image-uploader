@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const cloudinaryUpload = async (file) => {
   try {
-    const cloudinaryResponse = await uploadToCloudinary(file);
+    const cloudinaryResponse = await uploadToCloudinary(file.path);
     fs.unlink(file.path, (error) => {
       if (error) {
         console.log(error);

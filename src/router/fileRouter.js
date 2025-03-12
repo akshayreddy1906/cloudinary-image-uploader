@@ -23,8 +23,8 @@ fileRouter.post(
     });
     next();
   },
-  fileController,
+  isFilePresent,
   imageResize,
-  isFilePresent
+  fileController,
 );
 module.exports = { fileRouter };
